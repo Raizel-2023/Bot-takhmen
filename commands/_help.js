@@ -3,9 +3,9 @@
  Licensed under the  GPL-3.0 License;
  You may not use this file except in compliance with the License.
  It is supplied in the hope that it may be useful.
- * @project_name : Secktor-Md
- * @author : SamPandey001 <https://github.com/SamPandey001>
- * @description : Secktor,A Multi-functional whatsapp bot.
+ * @project_name : Secktor-Md By Suhail Tech
+ * @author : SuhailTech <https://www.youtube.com/c/SuhailTechInfo>
+ * @description : Secktor Bot ,A Multi-functional whatsapp bot.
  * @version 0.0.6
  **/
 
@@ -20,10 +20,10 @@ const Secktor = require('../lib/commands')
     //---------------------------------------------------------------------------
 Secktor.cmd({
             pattern: "help",
-            alias: ["menu"],
+            alias: ["menu", "اوامر", "الاوامر"],
             desc: "Help list",
             category: "general",
-            react: "✨",
+            react: "🐥",
             filename: __filename
         },
         async(Void, citel, text) => {
@@ -31,7 +31,7 @@ Secktor.cmd({
             if (text.split(" ")[0]) {
                 let arr = [];
                 const cmd = commands.find((cmd) => cmd.pattern === (text.split(" ")[0].toLowerCase()))
-                if (!cmd) return await citel.reply("*❌No Such commands.*");
+                if (!cmd) return await citel.reply("*❌لا يوجد.*");
                 else arr.push(`*🍁Command:* ${cmd.pattern}`);
                 if (cmd.category) arr.push(`*🧩Category:* ${cmd.category}`);
                 if (cmd.alias) arr.push(`*🧩Alias:* ${cmd.alias}`);
@@ -50,43 +50,99 @@ Secktor.cmd({
                     .format('HH:mm:ss')
                 moment.tz.setDefault('Asia/KOLKATA')
                     .locale('id')
-                const date = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
+                const date = moment.tz('asia/karachi').format('DD/MM/YYYY')
                 let total = await sck1.countDocuments()
-                let str = `╭────《 ` + fancytext(Config.ownername.split(' ')[0], 58) + ` 》─────⊷\n`
-                str +=
-                    '```' + `│ ╭───────✧❁✧───────«
-│ │ User:- ${citel.pushName}
-│ │ Theme:- ${tlang().title}
-│ │ Prefix:- [ ${prefix} ]
-│ │ Owner:- ${Config.ownername}
-│ │ Plugins:- ${commands.length}
-│ │ Users:- ${total}
-│ │ Uptime:- ${runtime(process.uptime())}
-│ │ Mem:- ${formatp(os.totalmem() - os.freemem())}/${formatp(os.totalmem())}
-│ │ Time:- ${time}
-│ │ Date:- ${date}
-│ ╰───────✧❁✧───────»
-╰───────────────⊷\n
-` + '```'
-                str += `╭───『 ` + fancytext('Commands', 57) + `』──◆`
-                for (const category in cmds) {
-                    str += `
-┃  ╭───────✧❁✧───────«
-┃  │ ✯---- ${tiny(category)} ----⦿
-┃  ╰┬──────✧❁✧───────»
-┃  ┌┤\n`
-                    for (const plugins of cmds[category]) {
-                        str += `┃  │ ✭ ${plugins}\n`
-                    }
-                    str += `┃  ╰─────────────◆`
-                }
+                let str = `⌬━─━｢مقدمه｣━─━⌬
+ هلا:-｢  ${citel.pushName}  ｣
+الوقت:-｢  ${time}  ｣
+التاريخ:-｢  ${date}  ｣
+المطور:-｢ @رايزل جورج ｣
+موقعنا:-｢ https://solo.to/daemon-1 ｣
+*⺀اوامر بوت رايزل⺀*
+⌬━─━｢المشرفين｣━─━⌬
+❀╎.منشن
+*┇↜⟬ لعمل منشن جماعي ⟭*
+❀╎.مخفي
+*┇↜⟬ لعمل منشن مخفي ⟭*
+❀╎.ترقيه + منشن
+*┇↜⟬ لترقية عضو عادي ⟭*
+❀╎.تنزيل + منشن
+*┇↜⟬ لتنزيل من منصب مشرف ⟭*
+❀╎.حذف
+*┇↜⟬ يحذف البوت الرسائل ⟭*
+❀╎.قروب
+*┇↜⟬ لاعدادات القروب ⟭*
+❀╎.خالقروب
+*┇↜⟬ لتغيير خلفية القروب ⟭*
+❀╎.الروابط
+*┇↜⟬ لطرد اللي يرسلو روابط ⟭*
+❀╎.اختصار
+*┇↜⟬ يختصر رابطك ⟭*
+❀╎.انذار
+*┇↜⟬ يوزع انذارات ⟭*
+❀╎.انذارات
+*┇↜⟬ لمعرفة عدد انذاراتك ⟭*
+❀╎.حذف_انذار
+*┇↜⟬ لحذف احد الانذارات ⟭*
+❀╎.الترحيب
+*┇↜⟬ لتشغيل الترحيب ⟭*
+❀╎.التوديع
+*┇↜⟬ لتشغيل التوديع ⟭*
+⌬━─━｢الاعضاء｣━─━⌬
+❀╎.ملصق
+*┇↜⟬ لعمل ملصق ⟭*
+❀╎.ملصقي .حقوقي .سرقه
+*┇↜⟬ لصناعة ملصق بحقوقك ⟭*
+❀╎.مساعده
+*┇↜⟬ يرسلك الدعم بالخاص ⟭*
+❀╎.بروفايل
+*┇↜⟬ يجيبلك تفاصيلك ⟭*
+❀╎.رانك
+*┇↜⟬ تشوف مستواك ⟭*
+❀╎.المتصدرين
+*┇↜⟬ لرؤية المتصدرين بالبوت ⟭*
+❀╎.الوقت
+*┇↜⟬ لمعرفة الساعه ⟭*
+⌬━─━｢شاتي｣━─━⌬
+｢  https://chat.whatsapp.com/Gq8IPcT52JTLBb4QobQTJt  ｣
+⌬━─━｢تسليه｣━─━⌬
+❀╎.تطقيم
+*┇↜⟬ يجلبلك تطقيمات ⟭*
+❀╎.نرد
+*┇↜⟬ رمي النرد ⟭*
+❀╎.بوكيمون
+*┇↜⟬ صور وحوش البوكيمون ⟭*
+❀╎.حيوانات
+*┇↜⟬ صور حيوانات ⟭*
+❀╎.قطط
+*┇↜⟬ صور قطط ⟭*
+❀╎.احزر
+*┇↜⟬ تحزر شخصيات انمي ⟭*
+❀╎.خلفية
+*┇↜⟬ يعطيك خلفيات عشوائيه ⟭*
+❀╎.شبيهي
+*┇↜⟬ يجيبلك شبيهك ⟭*
+❀╎.س
+*┇↜⟬ يعطيك سؤال ⟭*
+❀╎.ح
+*┇↜⟬ سؤال وجاوب بصراحه ⟭*
+❀╎.هل
+*┇↜⟬ تسأل البوت ⟭*
+❀╎.كت
+*┇↜⟬ للفعاليات⟭*
+⌬━─━｢اكس او｣━─━⌬
+❀╎.اكس
+*┇↜⟬ للعب اكس او ⟭*
+*❀╎حذفها/لحذف الجوله*
+⌬━─━｢النهايه｣━─━⌬
+`
 
-                str += `\n╰━━━━━━━━━━━──⊷\n`
                 let buttonMessaged = {
                     image: { url: await botpic() },
                     caption: str,
-                    footer: tlang().title,
-                    headerType: 4
+                    footer: tlang().footer,
+                    headerType: 4,
+                   
                 };
                 return await Void.sendMessage(citel.chat, buttonMessaged);
             }
@@ -94,40 +150,24 @@ Secktor.cmd({
     )
     //---------------------------------------------------------------------------
 Secktor.cmd({
-            pattern: "list",
+            pattern: "الدعم",
             desc: "list menu",
             category: "general",
-            react: "✅"
+            react: "😽"
         },
         async(Void, citel) => {
             const { commands } = require('../lib');
             let str = `
-╭━━〘 ` + fancytext(Config.ownername.split(' ')[0], 58) + ` 〙━━──⊷`
-            str += '```' + `
-┃ ⛥╭──────────────      
-┃ ⛥│ User: ${citel.pushName}
-┃ ⛥│ Theme: ${tlang().title}
-┃ ⛥│ Prefix: ${prefix}
-┃ ⛥│ Owner: ${Config.ownername}
-┃ ⛥│ Commands: ${commands.length}
-┃ ⛥│ Uptime: ${runtime(process.uptime())}
-┃ ⛥│ Mem: ${formatp(os.totalmem() - os.freemem())}/${formatp(os.totalmem())}
-┃ ⛥│  
-┃ ⛥╰───────────
-╰━━━━━━━━━━━──⊷\n` + '```'
-for (let i = 0; i < commands.length; i++) 
-{
-     if(commands[i].pattern==undefined) continue
-     str +=       `╭ ${i+1} *${fancytext(commands[i].pattern,1)}*\n` 
-     str += `╰➛ ${fancytext(commands[i].desc,1)}\n`
-}
-            return Void.sendMessage(citel.chat, { image: { url: THUMB_IMAGE }, caption: str })
+╭━〘 ` +fancytext('RAIZEL-SUPPORT', 58)+ ` 〙━─⊷`
+            str += '' + `*⺀دعم قروب رايزل بوت نورتونا⺀*\nhttps://chat.whatsapp.com/Fld2cn1jPaT6yAyPa1jjv2`
+            return Void.sendMessage(citel.chat, { image: { url: THUMB_IMAGE }, caption: str ,footer: tlang().footer, headerType: 4 })
         }
     )
     //---------------------------------------------------------------------------
 Secktor.cmd({
         pattern: "owner",
-        desc: "To find owner number",
+        alias: ["المطور", "مطور", "own"],
+        desc: "To check ping",
         category: "general",
         react: "💜",
         filename: __filename
@@ -173,11 +213,11 @@ async(Void, citel, text) => {
  const { commands } = require('../lib');
  let arr = [];
         const cmd = commands.find((cmd) => cmd.pattern === (text.split(" ")[0].toLowerCase()))
-        if (!cmd) return await citel.reply("*❌No Such commands.*");
+        if (!cmd) return await citel.reply("*❌لا يوجد امر كهذا.*");
         else arr.push(`*🍁Command:* ${cmd.pattern}`);
         if (cmd.category) arr.push(`*🧩Type:* ${cmd.category}`);
         if(cmd.filename) arr.push(`✨FileName: ${cmd.filename}`)
-        return citel.reply(arr.join('\n'));
+        return await citel.reply(arr.join('\n'));
 
 
 })
