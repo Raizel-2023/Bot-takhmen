@@ -27,7 +27,7 @@ const S=m;function Z(){const F=['126402oKAcRa','date','سيتم طرده لان�
              filename: __filename,
          },
          async(Void, citel, text) => {
-             if (!text) return reply(`.طلب ممكن تضيف امر جديد `);
+             if (!text) return reply(`.طلب ممكن تضيف امر يسوي ملصقات؟`);
              textt = `*| لديك طلب |*`;
              teks1 = `\n\n*المُطالب* : @${
      citel.sender.split("@")[0]

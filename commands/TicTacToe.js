@@ -1,3 +1,13 @@
+/**
+ Copyright (C) 2022.
+ Licensed under the  GPL-3.0 License;
+ You may not use this file except in compliance with the License.
+ It is supplied in the hope that it may be useful.
+ * @project_name : Secktor-Md
+ * @author : @samapndey001 <https://github.com/SamPandey001>
+ * @description : Secktor,A Multi-functional whatsapp bot.
+ * @version 0.0.6
+ **/
 
  const { cmd, parseJid,getAdmin,tlang } = require("../lib/");
  const eco = require('discord-mongoose-economy')
@@ -176,8 +186,8 @@ ${
   isWin
     ? `@${winner.split("@")[0]} فاز/ت 🎖️`
     : isTie
-    ? `تعادل ، كفو الاثنين `
-    : `دورك ${["❌", "⭕"][1 * room.game._currentTurn]} @${
+    ? `تعادل ، احسنتما الاثنين 👏`
+    :`دورك ${["❌", "⭕"][1 * room.game._currentTurn]} @${
         room.game.currentTurn.split("@")[0]
       }`
 }
@@ -213,7 +223,7 @@ ${
   }
 );
 
-cmd({ pattern: "شبيهي" }, async(Void, citel, text) => {
+cmd({ pattern: "شبيهي" , category: "fun" }, async(Void, citel, text) => {
     const { tlang } = require('../lib')
    if (!citel.isGroup) return citel.reply(tlang().group);
    const groupMetadata = citel.isGroup ? await Void.groupMetadata(citel.chat).catch((e) => {}) : "";
@@ -223,15 +233,15 @@ cmd({ pattern: "شبيهي" }, async(Void, citel, text) => {
     async function couple(percent) {
          var text;
         if (percent < 25) {
-            text = `\t\t\t\t\t*نسبة التشابه : ${percentage}%* \n\t\tابعد عنه ما يشبهك 🦦.`
+            text = `\t\t\t\t\t*النسبه : ${percentage}%* \n\t\tما تصلحون لبعض للأسف`
         } else if (percent < 50) {
-            text = `\t\t\t\t\t*نسبة التشابه : ${percentage}%* \n\t\t امم شرايكم تصيرو اصدقاء 🦦؟`
+            text = `\t\t\t\t\t*النسبه : ${percentage}%* \n\t\t اختيار موفق! 💫`
         } else if (percent < 75) {
-            text = `\t\t\t\t\t*نسبة التشابه : ${percentage}%* \n\t\t\t ولل يزينكم 🦦. `
+            text = `\t\t\t\t\t*النسبه : ${percentage}%* \n\t\t\tوشرايكم تصبحون اصدقاء ⭐️`
         } else if (percent < 90) {
-            text = `\t\t\t\t\t*نسبة التشابه : ${percentage}%* \n\t  اممم ثنائي حلو 🦦.`
+            text = `\t\t\t\t\t*النسبه : ${percentage}%* \n\tمدهش,انتما الاثنين ستكونا زوجان رائعان 💖 `
         } else {
-            text = `\t\t\t\t\t*نسبة التشابه : ${percentage}%* \n\tالله ، خُلقتم لبعض 😔💙.`
+            text = `\t\t\t\t\t*النسبه : ${percentage}%* \n\tولدتو لبعض انتو 💙`
         }
         return text
         }
@@ -242,9 +252,13 @@ cmd({ pattern: "شبيهي" }, async(Void, citel, text) => {
        } else {
        shiper = members[Math.floor(Math.random() * members.length)]
        }
-       let caption = `@${citel.sender.split('@')[0]}  x  @${shiper.split('@')[0]}\n \n`
+       let caption = `\t*｢نسبة الشبه بينكم｣* \n`
+        caption += `\t\t✯──────────✯\n`
+        caption += `@${citel.sender.split('@')[0]}  x  @${shiper.split('@')[0]}\n`
+        caption += `\t\t✯──────────✯\n`
         caption += await couple(percentage)
-        if(citel.sender.split('@')[0]===shiper.split('@')[0]) return citel.reply('```'+'تستغبي يفنطل ؟'+'```')
+        if(citel.sender.split('@')[0]===shiper.split('@')[0]) return citel.reply('```'+'تستغبي يحمار؟'+'```')
         await Void.sendMessage(citel.chat,{text: caption,mentions: [citel.sender,shiper]},{quoted:citel})
    }
 )
+// IDEA of Shipcent from => https://github.com/iamherok/WhatsApp-Botto-Ruka/blob/master/handler/message.js#L842

@@ -21,9 +21,9 @@ cmd({
     async(Void, citel, text, { isCreator }) => {
         const { tlang } = require('../lib')
         if (!isCreator) return citel.reply(tlang().owner)
-        let allmodtext = `*All Installed Plugins are:-*\n\n`
+        let allmodtext = `*All Installed Modules are:-*\n\n`
         allmodtext += await plugins()
-        return citel.reply(allmodtext)
+        citel.reply(allmodtext)
 
     }
 )
@@ -31,9 +31,8 @@ cmd({
 //---------------------------------------------------------------------------
 cmd({
         pattern: "remove",
-        alias :['uninstall'],
         category: "owner",
-        desc: "removes external plugins.",
+        desc: "removes external modules.",
         filename: __filename
     },
     async(Void, citel, text,{ isCreator}) => {

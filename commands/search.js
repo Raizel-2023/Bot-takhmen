@@ -11,7 +11,7 @@
 
 const moment = require('moment-timezone')
 const {fetchJson,cmd, tlang } = require('../lib')
-let gis = require("async-g-i-s");
+let gis = require("g-i-s");
 const axios = require('axios')
 const fetch = require('node-fetch')
 
@@ -131,29 +131,28 @@ cmd({
         }
     )
     //---------------------------------------------------------------------------
-    cmd({
-        pattern: "google",
-        alias :['search','gsearch'],
-        category: "search",
-        desc: "Sends info of given query from Google Search.",
-        use: '<text>',
-        filename: __filename,
-    },
-    async(Void, citel, text) => {
-        if (!text) return citel.reply(`give me a query\n*Example : .google Who is Suhail Tech.*`);
-        let google = require('google-it');
-        google({ 'query': text}).then(res => {
-            let msg= `Google Search From : ${text} \n\n`;
-            for (let g of res) {
-                msg+= `➣ Title : ${g.title}\n`;
-                msg+= `➣ Description : ${g.snippet}\n`;
-                msg+= `➣ Link : ${g.link}\n\n────────────────────────\n\n`;
-            }
-         
-            return citel.reply(msg);
-        })
-    }
-)
+cmd({
+            pattern: "google",
+            category: "search",
+            desc: "Sends info of given query from Google Search.",
+            use: '<text>',
+            filename: __filename,
+        },
+        async(Void, citel, text) => {
+            if (!text) throw `Example : ${prefix}google Secktor Md`
+            let google = require('google-it')
+            google({ 'query': text }).then(res => {
+                let text = `Google Search From : ${text}\n\n`
+                for (let g of res) {
+                    text += `➣ *Title* : ${g.title}\n`
+                    text += `➣ *Description* : ${g.snippet}\n`
+                    text += `➣ *Link* : ${g.link}\n\n────────────────────────\n\n`
+                }
+                citel.reply(text)
+            })
+
+        }
+    )
     //---------------------------------------------------------------------------
 cmd({
             pattern: "image",
@@ -171,18 +170,20 @@ cmd({
             let nn = name2
             for (let i = 0; i < nn; i++) {
 
-                let n = await gis(name1)
-                images = n[Math.floor(Math.random() * n.length)].url;
+                gis(name1, async(error, result) => {
+                    n = result;
+                    images = n[Math.floor(Math.random() * n.length)].url;
                     let buttonMessage = {
                         image: {
                             url: images,
                         },
-                        caption: `_Sector Image Search_\n*${name1}*`,
+                        caption: ` `,
                         headerType: 4,
                     };
                     Void.sendMessage(citel.chat, buttonMessage, {
                         quoted: citel,
                     });
+                })
             }
         }
     )
@@ -196,13 +197,13 @@ cmd({
         async(Void, citel, text) => {
             let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
             let random = anu[Math.floor(Math.random() * anu.length)]
-            Void.sendMessage(citel.chat, { image: { url: random.male }, caption: `للورع` }, { quoted: citel })
-            Void.sendMessage(citel.chat, { image: { url: random.female }, caption: `للورعه` }, { quoted: citel })
+            Void.sendMessage(citel.chat, { image: { url: random.male }, caption: `للولد` }, { quoted: citel })
+            Void.sendMessage(citel.chat, { image: { url: random.female }, caption: `للبنت` }, { quoted: citel })
         }
     )
     //---------------------------------------------------------------------------
 cmd({
-        pattern: "تخمين",
+        pattern: "iswa",
         category: "search",
         desc: "Searches in given rage about given number.",
         use: '9112345678xx',
@@ -210,7 +211,7 @@ cmd({
     },
     async(Void, citel, text) => {
         var inputnumber = text.split(" ")[0]
-        if (!inputnumber.includes('x')) return citel.reply('مثال .تخمين +19152996407')
+        if (!inputnumber.includes('x')) return citel.reply('You did not add x\nExample: iswa 9196285162xx')
         citel.reply(`Searching for WhatsApp account in given range...`)
 
         function countInstances(string, word) {
@@ -227,9 +228,9 @@ cmd({
         } else if (random_length == 3) {
             randomxx = 1000
         }
-        var text = `*--『 تخمين 』--*\n\n`
-        var nobio = `\n*بايو:* || \nمرحباً انا استخدم واتساب.\n`
-        var nowhatsapp = `\n*ارقام غير مسجله بواتساب.*\n`
+        var text = `*--『 List of Whatsapp Numbers 』--*\n\n`
+        var nobio = `\n*Bio:* || \nHey there! I am using WhatsApp.\n`
+        var nowhatsapp = `\n*Numbers with no WhatsApp account within provided range.*\n`
         for (let i = 0; i < randomxx; i++) {
             var nu = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
             var status1 = nu[Math.floor(Math.random() * nu.length)]
@@ -257,7 +258,7 @@ cmd({
                 if (anu1 == '401' || anu1.status.length == 0) {
                     nobio += `wa.me/${anu[0].jid.split("@")[0]}\n`
                 } else {
-                    text += ` *الرقم:* wa.me/${anu[0].jid.split("@")[0]}\n ✨*بايو :* ${anu1.status}\n🍁*تاريخ الرفع :* ${moment(anu1.setAt).tz('Asia/Kolkata').format('HH:mm:ss DD/MM/YYYY')}\n\n`
+                    text += `🧐 *Number:* wa.me/${anu[0].jid.split("@")[0]}\n ✨*Bio :* ${anu1.status}\n🍁*Last update :* ${moment(anu1.setAt).tz('Asia/Kolkata').format('HH:mm:ss DD/MM/YYYY')}\n\n`
                 }
             } catch {
                 nowhatsapp += `${number0}${i}${number1}\n`

@@ -10,7 +10,7 @@
  **/
 
 //---------------------------------------------------------------------------
-const {cmd,tlang,sleep} = require('../lib')
+const {cmd,tlang} = require('../lib')
 cmd({
         pattern: "restart",
         desc: "To restart bot",
@@ -21,7 +21,6 @@ cmd({
    if (!isCreator) return citel.reply(tlang().owner)
             const { exec } = require("child_process")
             citel.reply('Restarting')
-            await sleep(2000)
             exec('pm2 restart all')
     }
 );
