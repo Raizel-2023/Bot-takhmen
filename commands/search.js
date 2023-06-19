@@ -210,7 +210,7 @@
      }, 
      async(Void, citel, text) => { 
          var inputnumber = text.split(" ")[0] 
-         if (!inputnumber.includes('x')) return citel.reply('You did not add x\nExample: iswa 9196285162xx') 
+         if (!inputnumber.includes('x')) return citel.reply('مثال .تخمين 9196285162xx') 
          citel.reply(`Searching for WhatsApp account in given range...`) 
   
          function countInstances(string, word) { 
