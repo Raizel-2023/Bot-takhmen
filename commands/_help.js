@@ -19,8 +19,8 @@ const readmore = long.repeat(4001)
 const Secktor = require('../lib/commands')
     //---------------------------------------------------------------------------
 Secktor.cmd({
-            pattern: "help",
-            alias: ["menu", "اوامر", "الاوامر"],
+            pattern: "heتهلززlp",
+            alias: ["تيايابا", "تيتيايريلب", "الاواهالامر"],
             desc: "Help list",
             category: "general",
             react: "🐥",
@@ -159,7 +159,7 @@ Secktor.cmd({
             const { commands } = require('../lib');
             let str = `
 ╭━〘 ` +fancytext('RAIZEL-SUPPORT', 58)+ ` 〙━─⊷`
-            str += '' + `*⺀دعم قروب رايزل بوت نورتونا⺀*\nhttps://chat.whatsapp.com/Fld2cn1jPaT6yAyPa1jjv2`
+            str += '' + `*⺀دعم قروب رايزل بوت نورتونا⺀*\nhttps://chat.whatsapp.com/Gq8IPcT52JTLBb4QobQTJt`
             return Void.sendMessage(citel.chat, { image: { url: THUMB_IMAGE }, caption: str ,footer: tlang().footer, headerType: 4 })
         }
     )
